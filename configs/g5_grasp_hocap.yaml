@@ -1,0 +1,23 @@
+# Grasp model v5 = g4 + HO-Cap training subjects (the top-down rig; docs/DECISIONS.md 2026-11-12)
+#   + HO-Cap subjects 1, 2, 3, 4, 6, 7 (CC BY 4.0), cameras 105322251564 + 043422252387 (top-down)
+#     and 108222250342 (oblique): finger / state (any2) / vertex / mesh labels from the GT meshes
+#     (scripts/prepare_hocap_train.py), 40% of the DexYCB + HO-Cap sampling weight
+#   keeps PVDB overhead tabletop negatives (15%) and EgoPressure negatives (5%)
+# Selection: 0.4 DexYCB val + 0.4 HO-Cap val (subject 9) + 0.2 PVDB val-fold surface score.
+# HO-Cap TEST = subjects 5 + 8: never trained / tuned on. From g5 on, HO-Cap test numbers are
+# "same rig, unseen people", no longer zero-shot.
+name: g5_grasp_hocap
+init_grasp: runs/g4_grasp_topdown_neg_20261112-003115/best.pt
+hold_rule: any2
+egop_frac: 0.05
+pvdb_frac: 0.15
+hocap_frac: 0.4
+surface_val_w: 0.2
+hocap_val_w: 0.4
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 4
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100

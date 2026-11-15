@@ -1,0 +1,10 @@
+# C4 with a longer causal window (T=16 = 0.53 s at 30 FPS; PROJECT_SPEC 5.1 ablation 4/8/16)
+name: c4_mnv3_gru_T16
+backbone: mobilenetv3_small_100.lamb_in1k
+temporal: gru
+T: 16
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 40000
+batch_size: 16
+lr: 5.0e-4

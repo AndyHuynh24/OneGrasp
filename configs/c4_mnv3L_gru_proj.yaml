@@ -1,0 +1,11 @@
+# C4 MobileNetV3-large + simulated projector light augmentation (touch.data.projection)
+name: c4_mnv3L_gru_proj
+backbone: mobilenetv3_large_100.ra_in1k
+temporal: gru
+T: 8
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 60000
+batch_size: 32
+lr: 5.0e-4
+proj_aug: 0.5

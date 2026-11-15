@@ -1,0 +1,12 @@
+# Ablation of c4_mnv3L_gru_proj: no landmark branch (how much do v1 landmarks add?)
+name: c4_mnv3L_gru_proj_nolm
+backbone: mobilenetv3_large_100.ra_in1k
+temporal: gru
+T: 8
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 60000
+batch_size: 32
+lr: 5.0e-4
+proj_aug: 0.5
+use_landmarks: false

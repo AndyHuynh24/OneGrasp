@@ -1,0 +1,10 @@
+# C4 + rgb+ndiff input (DeepPhys normalized frame difference; PROJECT_SPEC 5.1 / MODEL_SELECTION step 5)
+name: c4_mnv3_gru_ndiff
+backbone: mobilenetv3_small_100.lamb_in1k
+temporal: gru
+T: 8
+input_repr: rgb+ndiff
+epochs: 8
+samples_per_epoch: 60000
+batch_size: 32
+lr: 5.0e-4

@@ -1,0 +1,36 @@
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Data, weights, run logs, recordings (never commit)
+/data/
+checkpoints/
+runs/
+wandb/
+results/
+demo_vids/
+*.pth
+*.pt
+*.onnx
+
+# Third-party models (installed per README)
+third_party/
+MUJOCO_LOG.TXT
+
+# Demo video project: build output and footage
+video/node_modules/
+video/out/
+video/public/clips/
+
+# Local tooling / notes
+CLAUDE.md
+.claude/
+prompts/
+research_notes/
+reports/
+
+# OS
+.DS_Store

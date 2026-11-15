@@ -1,0 +1,25 @@
+# Grasp model v4 = g3 fine-tuned with top-down "hand on a table, no object" data (docs/DECISIONS.md):
+#   g3 on HO-Cap top-down calls a hand resting on the table HOLD 66% of the time and fingertips
+#   hovering near objects contact 97%. EgoPressure negatives (g3) did not fix it.
+#   + 15% of windows from PressureVisionDB train-split participants: overhead camera 1.6 deg from
+#     vertical over a tabletop pressure pad (hands pressing / resting, no object), state = none,
+#     fingertip contact = pad pressure >= 1 kPa (hover vs press seen from above),
+#     15 fps upsampled to 30 (scripts/prepare_egop_grasp.py --source pvdb)
+#   EgoPressure negatives kept at 10%. DexYCB keeps 75% (hold rule any2).
+# Model selection on DexYCB val only. HO-Cap scored once.
+name: g4_grasp_topdown_neg
+init_grasp: runs/g3_grasp_any2_egop_20261111-171314/best.pt
+hold_rule: any2
+egop_frac: 0.10
+pvdb_frac: 0.15
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 4
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+# selection: 0.75 x DexYCB val score + 0.25 x PVDB val-fold surface score (held-out participants,
+# overhead: mean of fingertip F1 and 1 - state false-contact rate), so the chosen epoch is not
+# blind to the top-down no-object case
+surface_val_w: 0.25

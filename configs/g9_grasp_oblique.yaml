@@ -1,0 +1,24 @@
+# Grasp model v9 = g8 fine-tuned with the oblique HO-Cap camera 105322251225 added to training
+#   (Andy's camera angle; before g9 it was only on disk for the test subjects). Downloaded for
+#   train subjects 1-4, 6, 7 and val subject 9 (scripts/download_hocap_cams.py), prepared with
+#   scripts/prepare_hocap_train.py. That camera is sampled 3x (hocap_cam_boost). The HO-Cap val
+#   score used for selection now includes subject 9 on this camera. Otherwise as g8.
+name: g9_grasp_oblique
+init_grasp: runs/g8_grasp_webcam_20261113-011442/best.pt
+hold_rule: any2
+egop_frac: 0.05
+pvdb_frac: 0.15
+hocap_frac: 0.4
+hocap_cam_boost: "105322251225:3"
+surface_val_w: 0.2
+hocap_val_w: 0.4
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 3
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+table: true
+w_table: 0.5
+aug: webcam

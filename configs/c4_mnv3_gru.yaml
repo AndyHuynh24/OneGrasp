@@ -1,0 +1,10 @@
+# C4: per-frame MobileNetV3-small encoder + hand-relative landmarks + causal GRU (PROJECT_SPEC 5.3)
+name: c4_mnv3_gru
+backbone: mobilenetv3_small_100.lamb_in1k
+temporal: gru
+T: 8
+input_repr: rgb
+epochs: 12
+samples_per_epoch: 60000
+batch_size: 32
+lr: 5.0e-4

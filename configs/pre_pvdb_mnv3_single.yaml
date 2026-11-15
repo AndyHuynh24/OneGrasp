@@ -1,0 +1,13 @@
+# Optional pretraining (PROJECT_SPEC 5.4.2): single-frame MobileNetV3-small on PVDB train (overhead,
+# 15 FPS; per-finger labels from MediaPipe landmarks). Validated on EgoPressure val overhead.
+name: pre_pvdb_mnv3_single
+backbone: mobilenetv3_small_100.lamb_in1k
+temporal: none
+T: 1
+views: [overhead]
+train_sources: [pvdb]
+epochs: 6
+samples_per_epoch: 120000
+batch_size: 128
+lr: 5.0e-4
+warmup_steps: 100

@@ -1,0 +1,29 @@
+# g13 = g10 + ALL own recordings (grasp sessions 11-13 + 11-14 incl. the still-hold / release
+#   session 120358, touch sessions) while keeping g10's public-data mix (g11 / g12 used ~90 %
+#   own data from one camera spot and forgot the other viewpoints; Andy 2026-11-14: "it should
+#   learn from all"). Splits by session (data/own/grasp_splits.json): test 200609 never used;
+#   val 200050 (grasp) + 204451 (touch) for model selection. Shares: own grasp .25, own touch
+#   .15, HO-Cap .30, PVDB .10, EgoPressure .05, DexYCB the rest (.15).
+name: g13_all
+init_grasp: runs/g10_grasp_own_20261113-230008/best.pt
+hold_rule: any2
+own_frac: 0.25
+own_touch_frac: 0.15
+own_val_w: 0.3
+egop_frac: 0.05
+pvdb_frac: 0.10
+hocap_frac: 0.30
+hocap_cam_boost: "105322251225:3"
+surface_val_w: 0.15
+hocap_val_w: 0.3
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 2
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+table: true
+w_table: 0.5
+aug: webcam
+own_eval: andy_touch_index_20261113-204451,andy_grasp_cup_20261113-200050

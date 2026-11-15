@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "touch"
+version = "0.0.1"
+description = "OneGrasp: turn one webcam demo of a hand into verified robot training data"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "torch",
+    "torchvision",
+    "timm",
+    "mediapipe>=0.10.30,<1.0",  # 1.0.1 aborts on macOS (Metal helper in TensorsToDetections)
+    "opencv-python",
+    "numpy",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+grasp = [  # hand-object contact labels from DexYCB (MANO mesh, KD-trees)
+    "smplx",
+    "scipy",
+]
+store = [  # reading / writing the hand-data store (docs/TIGER_DATA.md)
+    "psycopg[binary]",
+    "scipy",
+    "mujoco",
+    "huggingface_hub",
+]
+collect = [  # scripts/collect_labels.py: key-press labelling (key down AND up events)
+    "pygame>=2.5",
+]
+robot = [  # Panda demos: scripts/panda_demo.py, touch.demogen (robomimic-style HDF5 dataset)
+    "h5py>=3.10",
+]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/touch"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.pyright]
+# keep Pylance / pyright out of the data and run folders (millions of files; VS Code's Pylance
+# grew to ~4 GB on 2026-11-09)
+exclude = ["data", "runs", "results", "checkpoints", ".venv", "**/__pycache__"]

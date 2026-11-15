@@ -1,0 +1,13 @@
+# C2 + simulated top-down projector light on half the training windows (touch.data.projection).
+# Only change vs c2_fastvit_single: proj_aug.
+name: c2_fastvit_single_proj
+backbone: fastvit_t8.apple_in1k
+temporal: none
+T: 1
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 120000
+batch_size: 128
+lr: 3.0e-4
+warmup_steps: 100
+proj_aug: 0.5

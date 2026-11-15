@@ -1,0 +1,19 @@
+# c4_mnv3L_gru_proj_lm2_tt aimed at hover false positives (EclipseTouch / Google cluttered-tables use
+# explicit hover-only negatives): hover-only (no-contact) sequences sampled 2x, BCE positive weight
+# capped at 3 (was up to 20, which pushes the model to say "touch"). Everything else identical.
+name: c6_mnv3L_gru_lm2_tt_hover
+backbone: mobilenetv3_large_100.ra_in1k
+temporal: gru
+T: 8
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 60000
+batch_size: 32
+lr: 5.0e-4
+proj_aug: 0.5
+lm_feats: v2
+lm_emb: 64
+img_drop: 0.2
+max_minutes: 600
+pos_w_max: 3.0
+hover_weight: 2.0

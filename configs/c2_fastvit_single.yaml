@@ -1,0 +1,13 @@
+# C2: EgoTouch-style single frame: FastViT-T8 patch encoder + landmarks, causal median tuned on val.
+# Differences from EgoTouch: our hand-relative landmark features replace their polar coords to the
+# other hand's wrist (we touch a desk, not the other arm); lr/batch from EgoTouch (3e-4, 128).
+name: c2_fastvit_single
+backbone: fastvit_t8.apple_in1k
+temporal: none
+T: 1
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 120000
+batch_size: 128
+lr: 3.0e-4
+warmup_steps: 100

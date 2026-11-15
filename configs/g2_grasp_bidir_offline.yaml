@@ -1,0 +1,17 @@
+# OFFLINE grasp labeller for recorded demonstrations (sees +-6 future/past frames). Not a live model.
+name: g2_grasp_bidir_offline
+bidir: true
+init_causal: runs/g1_grasp_repvit_20261109-154049/best.pt
+tip_backbone: mobilenetv3_large_100.ra_in1k
+hand_backbone: repvit_m1_1.dist_450e_in1k
+pretrained: false  # every weight comes from init_causal
+T: 13
+grad_frames: 3
+epochs: 4
+samples_per_epoch: 24000
+batch_size: 16
+lr: 2.0e-4
+tip_lr_mult: 0.3
+warmup_steps: 200
+num_workers: 4
+max_minutes: 330

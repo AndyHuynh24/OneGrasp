@@ -1,0 +1,26 @@
+# Grasp model v10 = g9 fine-tuned with our own key-labelled grasp recordings added
+#   (scripts/collect_labels.py -> scripts/prepare_own_grasp.py; Andy, overhead Camo, cup).
+#   Hand state labels only. Splits by session (data/own/grasp_splits.json): test 200609 never
+#   used; val 200050 joins model selection (own_val_w). Sampling shares after all sources:
+#   ~DexYCB .33, HO-Cap .22, own .30, PVDB .10, EgoPressure .05. Otherwise as g9.
+name: g10_grasp_own
+init_grasp: runs/g9_grasp_oblique_20261113-093840/best.pt
+hold_rule: any2
+own_frac: 0.35
+own_val_w: 0.3
+egop_frac: 0.05
+pvdb_frac: 0.15
+hocap_frac: 0.4
+hocap_cam_boost: "105322251225:3"
+surface_val_w: 0.15
+hocap_val_w: 0.3
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 2
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+table: true
+w_table: 0.5
+aug: webcam

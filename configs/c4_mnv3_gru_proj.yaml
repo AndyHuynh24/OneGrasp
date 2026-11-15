@@ -1,0 +1,12 @@
+# C4 + simulated top-down projector light on half the training windows (touch.data.projection).
+# Only change vs c4_mnv3_gru: proj_aug (and 8 epochs; C4 plateaued by epoch 6).
+name: c4_mnv3_gru_proj
+backbone: mobilenetv3_small_100.lamb_in1k
+temporal: gru
+T: 8
+input_repr: rgb
+epochs: 8
+samples_per_epoch: 60000
+batch_size: 32
+lr: 5.0e-4
+proj_aug: 0.5
