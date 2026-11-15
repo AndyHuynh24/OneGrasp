@@ -1,0 +1,12 @@
+# C0 with v2 landmark kinematics: landmark-only floor, fast check that v2 carries more signal than v1
+name: c0_lm2_gru
+use_image: false
+temporal: gru
+T: 8
+epochs: 10
+samples_per_epoch: 60000
+batch_size: 256
+lr: 1.0e-3
+warmup_steps: 50
+lm_feats: v2
+lm_emb: 64

@@ -1,0 +1,22 @@
+# Grasp model v7 = g6 + HO-Cap "air" hold labels (docs/DECISIONS.md 2026-11-12):
+#   hold = held AND the touched object is off the table (scripts/make_hold_air_labels.py);
+#   an object set down with the hand still on it = touch. DexYCB / PVDB / EgoPressure unchanged.
+#   Starts from g6; selection on HO-Cap val now uses the air labels too.
+name: g7_grasp_air
+init_grasp: runs/g6_grasp_table_20261112-101602/best.pt
+hold_rule: any2
+egop_frac: 0.05
+pvdb_frac: 0.15
+hocap_frac: 0.4
+surface_val_w: 0.2
+hocap_val_w: 0.4
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 4
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+table: true
+w_table: 0.5
+hocap_hold_rule: air

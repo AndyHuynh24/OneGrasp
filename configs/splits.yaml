@@ -1,0 +1,19 @@
+# Participant splits. NEVER change without a dated, documented decision (test participants never train).
+# STATUS: CHOSEN 2026-10-04. FROZEN.
+#
+# egopressure: the paper uses 15 train+val / 6 test participants but does not name them, so we
+#   draw our own: numpy.random.default_rng(0).permutation(1..21) -> first 6 = test, next 3 = val,
+#   rest = train (12/3/6 keeps the paper's 15/6 shape).
+# pvdb: PressureVision's official folds. train_fold_1-4 -> train, val_fold_5 -> val,
+#   test -> test. PVDB test is never trained on (cross-dataset check only).
+# Our own recordings (P7) get their own split later.
+
+egopressure:
+  train: [ep_001, ep_002, ep_006, ep_008, ep_009, ep_010, ep_012, ep_014, ep_015, ep_016, ep_018, ep_021]
+  val: [ep_004, ep_007, ep_020]
+  test: [ep_003, ep_005, ep_011, ep_013, ep_017, ep_019]
+
+pvdb:
+  train: [pv_9002, pv_9003, pv_9006, pv_9007, pv_9009, pv_9012, pv_9013, pv_9015, pv_9017, pv_9018, pv_9020, pv_9021, pv_9023, pv_9024, pv_9026, pv_9027, pv_9029, pv_9030, pv_9031, pv_9032, pv_9034, pv_9035, pv_9037, pv_9038]
+  val: [pv_9008, pv_9016, pv_9022, pv_9028, pv_9033, pv_9039]
+  test: [pv_9010, pv_9011, pv_9014, pv_9019, pv_9025, pv_9036]

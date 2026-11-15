@@ -1,0 +1,18 @@
+# Grasp model v3 = g1 fine-tuned to fix its two HO-Cap failure modes (runs/hocap/, docs/DECISIONS.md):
+#   1. held objects called "touch": hold label "any2" (any 2 hand parts in contact + object moved
+#      > 1 cm; no thumb requirement), dexycb.labels_from_dist
+#   2. hand resting on the table called touch / hold: 15% of windows from EgoPressure train-split
+#      "fingers on a surface, no object" tracks, state = none (scripts/prepare_egop_grasp.py)
+# Data: DexYCB s1 train subjects (val subject 7; test 8-9 unused) + EgoPressure train participants.
+# Both changes at once (one run); split them into ablations only if g3 helps.
+name: g3_grasp_any2_egop
+init_grasp: runs/g1_grasp_repvit_20261109-154049/best.pt
+hold_rule: any2
+egop_frac: 0.15
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 3
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100

@@ -1,0 +1,11 @@
+# Grasp model v1 (camera only): OneTouch fingertip branch (init from lm2_tt s0) + RepViT-M1.1 hand
+# crop + causal GRUs -> finger contact, hand state (none/touch/hold), vertex contact, MANO mesh.
+# Data: DexYCB s1 (train subjects 1-6, 10; val subject 7; test 8-9 never used here).
+name: g1_grasp_repvit
+init_touchnet: runs/c4_mnv3L_gru_proj_lm2_tt_s0_20261108-144620/best.pt
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 6
+samples_per_epoch: 24000
+batch_size: 16
+lr: 3.0e-4

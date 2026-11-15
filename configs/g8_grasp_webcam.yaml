@@ -1,0 +1,22 @@
+# Grasp model v8 = g6 fine-tuned with webcam-like augmentation of the crops
+#   (grasp_store.GraspWindowDataset._webcam: white balance, gamma, blur, low resolution, sensor
+#   noise, JPEG quality), to generalise to a laptop webcam / a new hand. Labels as g6 (any2).
+#   Same data mix and selection as g6. 3 epochs (fine-tune), launched 2026-11-13 overnight.
+name: g8_grasp_webcam
+init_grasp: runs/g6_grasp_table_20261112-101602/best.pt
+hold_rule: any2
+egop_frac: 0.05
+pvdb_frac: 0.15
+hocap_frac: 0.4
+surface_val_w: 0.2
+hocap_val_w: 0.4
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 3
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+table: true
+w_table: 0.5
+aug: webcam

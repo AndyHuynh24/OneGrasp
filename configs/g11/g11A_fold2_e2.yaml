@@ -1,0 +1,25 @@
+# g11 k-fold (A), 2 epochs (deeper): 1 vs 2 epochs on the held-out session 050011
+name: g11A_fold2e2
+init_grasp: runs/g10_grasp_own_20261113-230008/best.pt
+hold_rule: any2
+own_frac: 0.9
+own_val_w: 0.0
+egop_frac: 0.0
+pvdb_frac: 0.0
+hocap_frac: 0.0
+hocap_cam_boost: ''
+surface_val_w: 0.0
+hocap_val_w: 0.0
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 2
+samples_per_epoch: 24000
+batch_size: 16
+lr: 5.0e-05
+warmup_steps: 50
+table: true
+w_table: 0.5
+aug: webcam
+quick_val: true
+own_train: andy_grasp_cup_20261114-045459,andy_grasp_cup_20261114-045815,andy_grasp_cup_20261114-050217
+own_eval: andy_grasp_cup_20261114-050011,andy_grasp_cup_20261113-200050

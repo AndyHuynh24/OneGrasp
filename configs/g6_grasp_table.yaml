@@ -1,0 +1,22 @@
+# Grasp model v6 = g5 + a "hand touches the table" head (docs/DECISIONS.md 2026-11-12)
+#   table labels: GT hand mesh within 1 cm of the table plane (DexYCB AprilTag frame, HO-Cap
+#   world z = 0; scripts/make_table_labels.py), PVDB pressure pad = table; EgoPressure unknown.
+#   Same data mix and selection as g5; the table head is reported, not part of the selection.
+#   Use: a hold / close needs object contact; a hand touching only the table is not a grasp.
+name: g6_grasp_table
+init_grasp: runs/g5_grasp_hocap_20261112-014324/best.pt
+hold_rule: any2
+egop_frac: 0.05
+pvdb_frac: 0.15
+hocap_frac: 0.4
+surface_val_w: 0.2
+hocap_val_w: 0.4
+hand_backbone: repvit_m1_1.dist_450e_in1k
+T: 8
+epochs: 4
+samples_per_epoch: 24000
+batch_size: 16
+lr: 1.0e-4
+warmup_steps: 100
+table: true
+w_table: 0.5

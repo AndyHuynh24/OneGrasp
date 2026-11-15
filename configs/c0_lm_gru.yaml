@@ -1,0 +1,10 @@
+# C0: landmark-only causal GRU (floor; no image)
+name: c0_lm_gru
+use_image: false
+temporal: gru
+T: 8
+epochs: 10
+samples_per_epoch: 60000
+batch_size: 256
+lr: 1.0e-3
+warmup_steps: 50
